@@ -18,14 +18,18 @@
   </div>
   <div class="control-group">
     <label for="topX">Top X Songs:</label>
-    <input type="number" id="topX" min="1" max="100" value="5">
-    <label for="preset">Preset:</label>
-    <select id="preset">
-      <option value="5">Easy</option>
-      <option value="20">Medium</option>
-      <option value="100">Hard</option>
-    </select>
+    <input type="number" id="topX" min="1" max="100" value="10">
+    <label for="skipY">Skip Top Y Songs:</label>
+    <input type="number" id="skipY" min="0" max="100" value="0">
   </div>
+  <label for="preset">Preset:</label>
+  <select id="preset">
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="hard">Hard</option>
+    <option value="extraHard">Extra Hard</option>
+  </select>
+
   <div class="control-group">
     <label><input type="checkbox" id="videoType"> Toggle for Lyric Video / Karaoke</label>
     <span id="videoMode">Lyric Video</span>

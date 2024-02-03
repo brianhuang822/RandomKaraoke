@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     for (let year = yearFrom; year <= yearTo; year++) {
       if (songsData[year]) {
-        filteredSongs.push(...songsData[year].slice(0, topX));
+        const startIdx = skipY < songsData[year].length ? skipY : 0; // Ensure skipY does not exceed array bounds
+        const endIdx = startIdx + topX <= songsData[year].length ? startIdx + topX : songsData[year].length;
+        filteredSongs.push(...songsData[year].slice(startIdx, endIdx));
       }
     }
 
@@ -50,9 +52,29 @@ document.addEventListener('DOMContentLoaded', function() {
   // Update label on toggle
   videoTypeCheckbox.addEventListener('change', updateVideoModeLabel);
 
+  const skipYInput = document.getElementById('skipY');
   const presetSelect = document.getElementById('preset');
 
   presetSelect.addEventListener('change', function() {
-    topXInput.value = this.value;
+    switch (this.value) {
+      case 'easy':
+        topXInput.value = 10;
+        skipYInput.value = 0;
+        break;
+      case 'medium':
+        topXInput.value = 25;
+        skipYInput.value = 10;
+        break;
+      case 'hard':
+        topXInput.value = 50;
+        skipYInput.value = 25;
+        break;
+      case 'extraHard':
+        topXInput.value = 100;
+        skipYInput.value = 50;
+        break;
+    }
+    updateVideoModeLabel(); // Ensure the video mode label is updated
   });
+
 });
