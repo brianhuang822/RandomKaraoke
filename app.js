@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const songDisplay = document.getElementById('songDisplay');
 
   // Load songs data from 2006 to 2023
-  for (let year = 2019; year <= 2023; year++) {
+  for (let year = 2017; year <= 2023; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {
@@ -28,14 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
       if (songsData[year]) {
         const startIdx = skipY < songsData[year].length ? skipY : 0; // Ensure skipY does not exceed array bounds
         const endIdx = startIdx + topX <= songsData[year].length ? startIdx + topX : songsData[year].length;
-        filteredSongs.push(...songsData[year].slice(startIdx, endIdx));
+        filteredSongs.push(songsData[year].slice(startIdx, endIdx));
       }
     }
-
-    let randomSong = filteredSongs[Math.floor(Math.random() * filteredSongs.length)];
+    let randomYear = Math.floor(Math.random() * filteredSongs.length);
+    let randomSongIndex = Math.floor(Math.random() * filteredSongs[randomYear].length);
+    let randomSong = filteredSongs[randomYear][Math.floor(Math.random() * filteredSongs[randomYear].length)];
     let videoUrl = randomSong[videoType];
     songDisplay.innerHTML = `
       <h2>${randomSong.songTitle}</h2>
+      <h3>Rank: ${randomSongIndex} in year ${2006+randomYear}<h3>
       <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
   });
