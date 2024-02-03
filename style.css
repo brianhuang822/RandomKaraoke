@@ -52,3 +52,8 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 0.25rem;
 }
+#videoMode {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #007bff;
+}

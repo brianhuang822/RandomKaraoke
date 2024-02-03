@@ -37,6 +37,18 @@ document.addEventListener('DOMContentLoaded', function() {
       <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
   });
+  const videoModeSpan = document.getElementById('videoMode');
+
+  // Function to update video mode label
+  function updateVideoModeLabel() {
+    videoModeSpan.textContent = videoTypeCheckbox.checked ? 'Karaoke' : 'Lyric Video';
+  }
+
+  // Initialize with correct mode
+  updateVideoModeLabel();
+
+  // Update label on toggle
+  videoTypeCheckbox.addEventListener('change', updateVideoModeLabel);
 
   const presetSelect = document.getElementById('preset');
 
