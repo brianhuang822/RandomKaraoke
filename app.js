@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const randomBtn = document.getElementById('randomBtn');
   const songDisplay = document.getElementById('songDisplay');
 
-  // Load songs data from 2006 to 2023
-  for (let year = 2013; year <= 2023; year++) {
+  // Load songs data from 2011 to 2023
+  for (let year = 2011; year <= 2023; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {

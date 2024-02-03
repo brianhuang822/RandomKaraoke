@@ -29,7 +29,6 @@ while something_found:
                 results = "https://youtube.com/watch?v=" + YoutubeSearch(song_title + ' lyric video', max_results=1).videos[0]['id']
                 results_karaoke =  "https://youtube.com/watch?v=" + YoutubeSearch(song_title + ' karaoke', max_results=1).videos[0]['id']
                 song_parsed.append({"songTitle": song_title, "lyricVideo": results, "karaoke": results_karaoke})
-                time.sleep(1)
                 with open(f"{year}.json", "w+") as f1:
                     json.dump(song_parsed, f1, indent=2)
     except Exception as e:
