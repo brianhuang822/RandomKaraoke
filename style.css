@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 20px;
+}
+
+h1 {
+  color: #007bff;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.control-group {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input[type="number"], select {
+  padding: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  color: #495057;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#songDisplay {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+}

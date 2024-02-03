@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const songDisplay = document.getElementById('songDisplay');
 
   // Load songs data from 2006 to 2023
-  for (let year = 2022; year <= 2023; year++) {
+  for (let year = 2021; year <= 2023; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {
@@ -36,5 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
       <h2>${randomSong.songTitle}</h2>
       <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
+  });
+
+  const presetSelect = document.getElementById('preset');
+
+  presetSelect.addEventListener('change', function() {
+    topXInput.value = this.value;
   });
 });

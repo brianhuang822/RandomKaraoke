@@ -4,21 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Song Selector</title>
-<style>
-body { font-family: Arial, sans-serif; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <h1>Song Selector</h1>
-<div>
-  <label for="yearFrom">Year From:</label>
-  <input type="number" id="yearFrom" min="2006" max="2023" value="2006">
-  <label for="yearTo">Year To:</label>
-  <input type="number" id="yearTo" min="2006" max="2023" value="2023">
-  <label for="topX">Top X Songs:</label>
-  <input type="number" id="topX" min="1" max="100" value="10">
-  <label><input type="checkbox" id="videoType"> Toggle for Lyric Video / Karaoke</label>
-  <button id="randomBtn">Random</button>
+<div class="controls">
+  <div class="control-group">
+    <label for="yearFrom">Year From:</label>
+    <input type="number" id="yearFrom" min="2006" max="2023" value="2006">
+    <label for="yearTo">Year To:</label>
+    <input type="number" id="yearTo" min="2006" max="2023" value="2023">
+  </div>
+  <div class="control-group">
+    <label for="topX">Top X Songs:</label>
+    <input type="number" id="topX" min="1" max="100" value="10">
+    <label for="preset">Preset:</label>
+    <select id="preset">
+      <option value="5">Easy</option>
+      <option value="20">Medium</option>
+      <option value="100">Hard</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label><input type="checkbox" id="videoType"> Toggle for Lyric Video / Karaoke</label>
+    <button id="randomBtn">Random</button>
+  </div>
 </div>
 <div id="songDisplay"></div>
 <script src="app.js"></script>
