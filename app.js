@@ -7,17 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const randomBtn = document.getElementById('randomBtn');
   const songDisplay = document.getElementById('songDisplay');
 
-  // Load songs data from 2011 to 2023
-  for (let year = 2011; year <= 2023; year++) {
-    fetch(`${year}.json`)
-      .then(response => response.json())
-      .then(data => {
-        songsData[year] = data;
-      })
-      .catch(error => console.error('Error loading song data:', error));
-  }
-
-  randomBtn.addEventListener('click', function() {
+  function randomSong() {
     let yearFrom = parseInt(yearFromInput.value);
     let yearTo = parseInt(yearToInput.value);
     let topX = parseInt(topXInput.value);
@@ -41,13 +31,30 @@ document.addEventListener('DOMContentLoaded', function() {
       <h3>Rank: ${skipY + randomSongIndex + 1} in year ${2023 - filteredSongs.length + 1 + randomYear}<h3>
       <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
-  });
+  }
+
+  // Load songs data from 2010 to 2023
+  for (let year = 2010; year <= 2023; year++) {
+    fetch(`${year}.json`)
+      .then(response => response.json())
+      .then(data => {
+        songsData[year] = data;
+        if (year == 2023) {
+          //Random a song
+          randomSong();
+          }
+      })
+      .catch(error => console.error('Error loading song data:', error));
+  }
+
   const videoModeSpan = document.getElementById('videoMode');
 
   // Function to update video mode label
   function updateVideoModeLabel() {
     videoModeSpan.textContent = videoTypeCheckbox.checked ? 'Karaoke Mode' : 'Lyric Video Mode';
   }
+
+  randomBtn.addEventListener('click', randomSong);
 
   // Initialize with correct mode
   updateVideoModeLabel();
