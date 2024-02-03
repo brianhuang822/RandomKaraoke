@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let videoUrl = randomSong[videoType];
     songDisplay.innerHTML = `
       <h2>${randomSong.songTitle}</h2>
-      <h3>Rank: ${skipY + randomSongIndex + 1} in year ${2023 - filteredSongs.length + 1 + randomYear}<h3>
+      <h3>Rank: ${skipY + randomSongIndex + 1} in year ${yearFrom + randomYear}<h3>
       <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
   }
 
-  // Load songs data from 2009 to 2023
-  for (let year = 2009; year <= 2023; year++) {
+  // Load songs data from 2006 to 2023
+  for (let year = 2006; year <= 2023; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {
