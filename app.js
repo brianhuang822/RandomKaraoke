@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to update video mode label
   function updateVideoModeLabel() {
-    videoModeSpan.textContent = videoTypeCheckbox.checked ? 'Karaoke' : 'Lyric Video';
+    videoModeSpan.textContent = videoTypeCheckbox.checked ? 'Karaoke Mode' : 'Lyric Video Mode';
   }
 
   // Initialize with correct mode
