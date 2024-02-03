@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const songDisplay = document.getElementById('songDisplay');
 
   // Load songs data from 2006 to 2023
-  for (let year = 2014; year <= 2023; year++) {
+  for (let year = 2013; year <= 2023; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {
@@ -60,21 +60,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   presetSelect.addEventListener('change', function() {
     switch (this.value) {
-      case 'easy':
-        topXInput.value = 10;
+      case 'beginner':
+        topXInput.value = 5;
         skipYInput.value = 0;
         break;
+      case 'easy':
+        topXInput.value = 10;
+        skipYInput.value = 5;
+        break;
       case 'medium':
-        topXInput.value = 25;
-        skipYInput.value = 10;
+        topXInput.value = 15;
+        skipYInput.value = 15;
         break;
       case 'hard':
-        topXInput.value = 50;
-        skipYInput.value = 25;
+        topXInput.value = 20;
+        skipYInput.value = 30;
         break;
       case 'extraHard':
-        topXInput.value = 100;
+        topXInput.value = 25;
         skipYInput.value = 50;
+        break;
+      case 'songGuru':
+        topXInput.value = 30;
+        skipYInput.value = 75;
         break;
     }
     updateVideoModeLabel(); // Ensure the video mode label is updated
