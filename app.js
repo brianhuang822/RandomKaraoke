@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
   }
 
-  // Load songs data from 2010 to 2023
-  for (let year = 2010; year <= 2023; year++) {
+  // Load songs data from 2009 to 2023
+  for (let year = 2009; year <= 2023; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {
