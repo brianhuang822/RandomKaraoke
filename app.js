@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let videoUrl = randomSong[videoType];
     songDisplay.innerHTML = `
       <h2>${randomSong.songTitle}</h2>
-      <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}&output=embed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `;
   });
 });
