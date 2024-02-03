@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let yearFrom = parseInt(yearFromInput.value);
     let yearTo = parseInt(yearToInput.value);
     let topX = parseInt(topXInput.value);
+    let skipY = parseInt(skipYInput.value);
     let videoType = videoTypeCheckbox.checked ? 'karaoke' : 'lyricVideo';
     let filteredSongs = [];
 
