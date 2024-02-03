@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     let randomYear = Math.floor(Math.random() * filteredSongs.length);
     let randomSongIndex = Math.floor(Math.random() * filteredSongs[randomYear].length);
-    let randomSong = filteredSongs[randomYear][Math.floor(Math.random() * filteredSongs[randomYear].length)];
+    let randomSong = filteredSongs[randomYear][randomSongIndex];
     let videoUrl = randomSong[videoType];
     songDisplay.innerHTML = `
       <h2>${randomSong.songTitle}</h2>
