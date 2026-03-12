@@ -28,8 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let videoUrl = randomSong[videoType];
     songDisplay.innerHTML = `
       <h2>${randomSong.songTitle}</h2>
-      <h3>Rank: ${skipY + randomSongIndex + 1} in year ${yearFrom + randomYear}<h3>
-      <iframe width="560" height="315" src="${videoUrl.replace('watch?v=', 'embed/')}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <h3>Rank: ${skipY + randomSongIndex + 1} in year ${yearFrom + randomYear}</h3>
+      <div class="video-wrapper">
+        <iframe src="${videoUrl.replace('watch?v=', 'embed/')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     `;
   }
 
