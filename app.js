@@ -3,9 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const yearFromInput = document.getElementById('yearFrom');
   const yearToInput = document.getElementById('yearTo');
   const topXInput = document.getElementById('topX');
+  const skipYInput = document.getElementById('skipY');
   const videoTypeCheckbox = document.getElementById('videoType');
   const randomBtn = document.getElementById('randomBtn');
   const songDisplay = document.getElementById('songDisplay');
+  const videoModeSpan = document.getElementById('videoMode');
+  const presetPills = document.getElementById('presetPills');
 
   function randomSong() {
     let yearFrom = parseInt(yearFromInput.value);
@@ -17,20 +20,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     for (let year = yearFrom; year <= yearTo; year++) {
       if (songsData[year]) {
-        const startIdx = skipY < songsData[year].length ? skipY : 0; // Ensure skipY does not exceed array bounds
+        const startIdx = skipY < songsData[year].length ? skipY : 0;
         const endIdx = startIdx + topX <= songsData[year].length ? startIdx + topX : songsData[year].length;
         filteredSongs.push(songsData[year].slice(startIdx, endIdx));
       }
     }
     let randomYear = Math.floor(Math.random() * filteredSongs.length);
     let randomSongIndex = Math.floor(Math.random() * filteredSongs[randomYear].length);
-    let randomSong = filteredSongs[randomYear][randomSongIndex];
-    let videoUrl = randomSong[videoType];
+    let song = filteredSongs[randomYear][randomSongIndex];
+    let videoUrl = song[videoType];
     songDisplay.innerHTML = `
-      <h2>${randomSong.songTitle}</h2>
-      <h3>Rank: ${skipY + randomSongIndex + 1} in year ${yearFrom + randomYear}</h3>
-      <div class="video-wrapper">
-        <iframe src="${videoUrl.replace('watch?v=', 'embed/')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="song-card">
+        <h2>${song.songTitle}</h2>
+        <p class="song-meta">Rank #${skipY + randomSongIndex + 1} &middot; ${yearFrom + randomYear}</p>
+        <div class="video-wrapper">
+          <iframe src="${videoUrl.replace('watch?v=', 'embed/')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
     `;
   }
@@ -42,59 +47,39 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         songsData[year] = data;
         if (year == 2023) {
-          //Random a song
           randomSong();
-          }
+        }
       })
       .catch(error => console.error('Error loading song data:', error));
   }
 
-  const videoModeSpan = document.getElementById('videoMode');
-
-  // Function to update video mode label
   function updateVideoModeLabel() {
-    videoModeSpan.textContent = videoTypeCheckbox.checked ? 'Karaoke Mode' : 'Lyric Video Mode';
+    videoModeSpan.textContent = videoTypeCheckbox.checked ? 'Karaoke' : 'Lyric Video';
   }
 
   randomBtn.addEventListener('click', randomSong);
-
-  // Initialize with correct mode
   updateVideoModeLabel();
-
-  // Update label on toggle
   videoTypeCheckbox.addEventListener('change', updateVideoModeLabel);
 
-  const skipYInput = document.getElementById('skipY');
-  const presetSelect = document.getElementById('preset');
+  // Preset pills
+  const presets = {
+    beginner:  { topX: 5,  skipY: 0  },
+    easy:      { topX: 10, skipY: 5  },
+    medium:    { topX: 15, skipY: 15 },
+    hard:      { topX: 20, skipY: 30 },
+    extraHard: { topX: 25, skipY: 50 },
+    songGuru:  { topX: 30, skipY: 75 },
+  };
 
-  presetSelect.addEventListener('change', function() {
-    switch (this.value) {
-      case 'beginner':
-        topXInput.value = 5;
-        skipYInput.value = 0;
-        break;
-      case 'easy':
-        topXInput.value = 10;
-        skipYInput.value = 5;
-        break;
-      case 'medium':
-        topXInput.value = 15;
-        skipYInput.value = 15;
-        break;
-      case 'hard':
-        topXInput.value = 20;
-        skipYInput.value = 30;
-        break;
-      case 'extraHard':
-        topXInput.value = 25;
-        skipYInput.value = 50;
-        break;
-      case 'songGuru':
-        topXInput.value = 30;
-        skipYInput.value = 75;
-        break;
+  presetPills.addEventListener('click', function(e) {
+    const pill = e.target.closest('.pill');
+    if (!pill) return;
+    presetPills.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const preset = presets[pill.dataset.value];
+    if (preset) {
+      topXInput.value = preset.topX;
+      skipYInput.value = preset.skipY;
     }
-    updateVideoModeLabel(); // Ensure the video mode label is updated
   });
-
 });
