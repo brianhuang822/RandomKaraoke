@@ -1,59 +1,252 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+  background-color: #0f0f1a;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
 }
 
 h1 {
-  color: #007bff;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 8px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 500px;
+  margin-bottom: 24px;
+  line-height: 1.4;
 }
 
 .controls {
-  margin-bottom: 20px;
+  background: #1a1a2e;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #2a2a3e;
 }
 
 .control-group {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.control-group.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
 }
 
 label {
-  margin-right: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #999;
 }
 
-input[type="number"], select {
-  padding: 5px;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  color: #495057;
+input[type="number"],
+select {
+  padding: 10px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #12121e;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color 0.2s;
+  -moz-appearance: textfield;
 }
 
-input[type="checkbox"] {
-  margin-right: 5px;
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #667eea;
 }
 
-button {
-  padding: 5px 10px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 0.25rem;
+select {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+/* Toggle switch */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-#songDisplay {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 0.25rem;
+.toggle-label {
+  font-size: 0.85rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+
+.switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #333;
+  border-radius: 26px;
+  transition: background-color 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.switch input:checked + .slider {
+  background-color: #667eea;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
 #videoMode {
-  margin-left: 10px;
-  font-weight: bold;
-  color: #007bff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #667eea;
+  white-space: nowrap;
+}
+
+button#randomBtn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  letter-spacing: 0.02em;
+}
+
+button#randomBtn:hover {
+  opacity: 0.9;
+}
+
+button#randomBtn:active {
+  transform: scale(0.98);
+}
+
+/* Song display */
+#songDisplay {
+  margin-top: 24px;
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+#songDisplay h2 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+#songDisplay h3 {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+/* Responsive video wrapper */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .controls {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .control-group.row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  button#randomBtn {
+    padding: 12px;
+  }
 }

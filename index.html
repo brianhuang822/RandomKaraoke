@@ -8,37 +8,47 @@
 </head>
 <body>
 <h1>Random Karaoke</h1>
-<p>Random select a billboard 100 song. Lyric video mode for song guessing and karaoke for normal/blind karaoke</p>
+<p class="subtitle">Randomly pick a Billboard Hot 100 song. Use Lyric Video mode for song guessing or Karaoke for singing.</p>
 <div class="controls">
-    <div class="control-group">
-        <label for="yearFrom">Year From:</label>
-        <input type="number" id="yearFrom" min="2006" max="2023" value="2006">
-        <label for="yearTo">Year To:</label>
-        <input type="number" id="yearTo" min="2006" max="2023" value="2023">
+    <div class="control-group row">
+        <div class="field">
+            <label for="yearFrom">Year From</label>
+            <input type="number" id="yearFrom" min="2006" max="2023" value="2006">
+        </div>
+        <div class="field">
+            <label for="yearTo">Year To</label>
+            <input type="number" id="yearTo" min="2006" max="2023" value="2023">
+        </div>
     </div>
-    <div class="control-group">
-        <label for="topX">Top X Songs:</label>
-        <input type="number" id="topX" min="1" max="100" value="5">
-        <label for="skipY">Skip Top Y Songs:</label>
-        <input type="number" id="skipY" min="0" max="100" value="0">
+    <div class="control-group row">
+        <div class="field">
+            <label for="topX">Top X Songs</label>
+            <input type="number" id="topX" min="1" max="100" value="5">
+        </div>
+        <div class="field">
+            <label for="skipY">Skip Top Y</label>
+            <input type="number" id="skipY" min="0" max="100" value="0">
+        </div>
     </div>
-    <label for="preset">Preset:</label>
-    <select id="preset">
-        <option value="beginner">Beginner</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-        <option value="extraHard">Extra Hard</option>
-        <option value="songGuru">Song Guru</option>
-    </select>
-
-    <div class="control-group">
-        <label><input type="checkbox" id="videoType" checked> Toggle for Lyric Video / Karaoke</label>
-        <span id="videoMode">Lyric Video</span>
+    <div class="field">
+        <label for="preset">Preset</label>
+        <select id="preset">
+            <option value="beginner">Beginner</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+            <option value="extraHard">Extra Hard</option>
+            <option value="songGuru">Song Guru</option>
+        </select>
     </div>
-    <div class="control-group">
-        <button id="randomBtn">Random</button>
+    <div class="toggle-row">
+        <label class="switch">
+            <input type="checkbox" id="videoType" checked>
+            <span class="slider"></span>
+        </label>
+        <span id="videoMode">Karaoke Mode</span>
     </div>
+    <button id="randomBtn">Random Song</button>
 </div>
 <div id="songDisplay"></div>
 <script src="app.js"></script>
