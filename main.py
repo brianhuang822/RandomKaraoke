@@ -9,7 +9,7 @@ something_found = True
 while something_found:
     try:
         something_found = False
-        for year in range(2006, 2024)[::-1]:
+        for year in range(2006, 2026)[::-1]:
             print(year)
             file_name = f"./{year}.json"
             chart_data = billboard.ChartData("hot-100-songs", year=str(year))
