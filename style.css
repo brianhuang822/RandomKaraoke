@@ -250,3 +250,41 @@ button#randomBtn:active {
     padding: 12px;
   }
 }
+
+button#randomBtn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+#songDisplay .artist {
+  color: #bbb;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+#songDisplay .note,
+#songDisplay .message {
+  color: #aaa;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+#songDisplay .note {
+  background: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+#songDisplay .watch-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #8a9bf0;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+#songDisplay .watch-link:hover {
+  text-decoration: underline;
+}

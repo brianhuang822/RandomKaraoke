@@ -1,2 +1,3 @@
 billboard.py
-youtube-search
+requests
+yt-dlp
