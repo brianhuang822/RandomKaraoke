@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
   }
 
-  // Load songs data from 2006 to 2023
-  for (let year = 2006; year <= 2023; year++) {
+  // Load songs data from 2006 to 2025
+  for (let year = 2006; year <= 2025; year++) {
     fetch(`${year}.json`)
       .then(response => response.json())
       .then(data => {
         songsData[year] = data;
-        if (year == 2023) {
+        if (year == 2025) {
           //Random a song
           randomSong();
           }
