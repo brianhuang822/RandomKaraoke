@@ -143,8 +143,9 @@ def credits(artist, words):
 def score(video, song, kind):
     """How well a video fits a song, or None when it is not even the right title."""
     title = video["title"]
-    title_words = set(tokens(title))
-    if coverage(song.core, title_words) < 0.75:
+    title_words = set(norm(title).split())
+    compact_title = "".join(song.core)  # "E.T." and "H.O.L.Y." are often written "ET" and "HOLY"
+    if coverage(song.core, title_words) < 0.75 and compact_title not in title_words:
         return None
     words = set(norm(f"{title} {video.get('channel') or ''}").split())
     artist_ok = any(credits(a, words) for a in song.artists)
