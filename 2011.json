@@ -1,496 +1,801 @@
 [
   {
+    "rank": 1,
     "songTitle": "Rolling In The Deep Adele",
+    "title": "Rolling In The Deep",
+    "artist": "Adele",
     "lyricVideo": "https://youtube.com/watch?v=AIYpdjQVidc",
     "karaoke": "https://youtube.com/watch?v=B3O1OlTWXSA"
   },
   {
-    "songTitle": "Party Rock Anthem LMFAO  Lauren Bennett  GoonRock",
+    "rank": 2,
+    "songTitle": "Party Rock Anthem LMFAO Lauren Bennett GoonRock",
+    "title": "Party Rock Anthem",
+    "artist": "LMFAO Featuring Lauren Bennett & GoonRock",
     "lyricVideo": "https://youtube.com/watch?v=tsMDKjb54EM",
     "karaoke": "https://youtube.com/watch?v=0WM9Amg7F5s"
   },
   {
+    "rank": 3,
     "songTitle": "Firework Katy Perry",
+    "title": "Firework",
+    "artist": "Katy Perry",
     "lyricVideo": "https://youtube.com/watch?v=KSbwHzlcgs8",
-    "karaoke": "https://youtube.com/watch?v=KUKyy4r-BO4"
+    "karaoke": "https://youtube.com/watch?v=mwBqXgljq7g"
   },
   {
-    "songTitle": "E.T. Katy Perry  Kanye West",
-    "lyricVideo": "https://youtube.com/watch?v=0P-_GnPdxZw",
-    "karaoke": "https://youtube.com/watch?v=ZKReVb9h_Hc"
+    "rank": 4,
+    "songTitle": "E.T. Katy Perry Kanye West",
+    "title": "E.T.",
+    "artist": "Katy Perry Featuring Kanye West",
+    "lyricVideo": "https://youtube.com/watch?v=OehxXNCYvTM",
+    "karaoke": "https://youtube.com/watch?v=zfJOqzJMIhE"
   },
   {
-    "songTitle": "Give Me Everything Pitbull  Ne-Yo, Afrojack  Nayer",
+    "rank": 5,
+    "songTitle": "Give Me Everything Pitbull Ne-Yo, Afrojack Nayer",
+    "title": "Give Me Everything",
+    "artist": "Pitbull Featuring Ne-Yo, Afrojack & Nayer",
     "lyricVideo": "https://youtube.com/watch?v=3MqUW5txLjs",
-    "karaoke": "https://youtube.com/watch?v=12ZDvzIViTw"
+    "karaoke": "https://youtube.com/watch?v=2mDV2fXa2fk"
   },
   {
+    "rank": 6,
     "songTitle": "Grenade Bruno Mars",
+    "title": "Grenade",
+    "artist": "Bruno Mars",
     "lyricVideo": "https://youtube.com/watch?v=4YrzJ9RZ9qY",
     "karaoke": "https://youtube.com/watch?v=joWbh8RYSas"
   },
   {
+    "rank": 7,
+    "songTitle": "F**k You (Forget You) CeeLo Green",
+    "title": "F**k You (Forget You)",
+    "artist": "CeeLo Green",
+    "lyricVideo": "https://youtube.com/watch?v=btd-816zRvU",
+    "karaoke": "https://youtube.com/watch?v=09RWgbv4aOw"
+  },
+  {
+    "rank": 8,
     "songTitle": "Super Bass Nicki Minaj",
+    "title": "Super Bass",
+    "artist": "Nicki Minaj",
     "lyricVideo": "https://youtube.com/watch?v=LWgS0yMM7z8",
-    "karaoke": "https://youtube.com/watch?v=20GjgF_3faw"
+    "karaoke": "https://youtube.com/watch?v=7zlCTDOy4uM"
   },
   {
-    "songTitle": "Moves Like Jagger Maroon 5  Christina Aguilera",
+    "rank": 9,
+    "songTitle": "Moves Like Jagger Maroon 5 Christina Aguilera",
+    "title": "Moves Like Jagger",
+    "artist": "Maroon 5 Featuring Christina Aguilera",
     "lyricVideo": "https://youtube.com/watch?v=GzUMdeecB_s",
-    "karaoke": "https://youtube.com/watch?v=hAwR8Mx8W44"
+    "karaoke": "https://youtube.com/watch?v=ViexBUcAayI"
   },
   {
+    "rank": 10,
     "songTitle": "Just Can't Get Enough The Black Eyed Peas",
+    "title": "Just Can't Get Enough",
+    "artist": "The Black Eyed Peas",
     "lyricVideo": "https://youtube.com/watch?v=0ch6TejAufE",
     "karaoke": "https://youtube.com/watch?v=xRK_mtz165A"
   },
   {
-    "songTitle": "On The Floor Jennifer Lopez  Pitbull",
+    "rank": 11,
+    "songTitle": "On The Floor Jennifer Lopez Pitbull",
+    "title": "On The Floor",
+    "artist": "Jennifer Lopez Featuring Pitbull",
     "lyricVideo": "https://youtube.com/watch?v=70XspGKI8kQ",
-    "karaoke": "https://youtube.com/watch?v=J8BW5A3s0HE"
+    "karaoke": "https://youtube.com/watch?v=1Z8Q9teMuYw"
   },
   {
+    "rank": 12,
     "songTitle": "S&M Rihanna",
-    "lyricVideo": "https://youtube.com/watch?v=Pj3r4kFRiyA",
-    "karaoke": "https://youtube.com/watch?v=-yPwm5ZjmjQ"
+    "title": "S&M",
+    "artist": "Rihanna",
+    "lyricVideo": "https://youtube.com/watch?v=m18ABiFlZss",
+    "karaoke": "https://youtube.com/watch?v=uZ6qzINxU8I"
   },
   {
-    "songTitle": "Pumped Up Kicks Foster The People",
+    "rank": 13,
+    "songTitle": "Pumped Up Kicks Foster the People",
+    "title": "Pumped Up Kicks",
+    "artist": "Foster the People",
     "lyricVideo": "https://youtube.com/watch?v=0DOv0-2yyfE",
-    "karaoke": "https://youtube.com/watch?v=IgGY2XSo5y8"
+    "karaoke": "https://youtube.com/watch?v=an4bvOaHl1Y"
   },
   {
+    "rank": 14,
     "songTitle": "Last Friday Night (T.G.I.F.) Katy Perry",
+    "title": "Last Friday Night (T.G.I.F.)",
+    "artist": "Katy Perry",
     "lyricVideo": "https://youtube.com/watch?v=oIl8lEz86jY",
-    "karaoke": "https://youtube.com/watch?v=ZJ_-i6MhWq8"
+    "karaoke": "https://youtube.com/watch?v=hOKw-0un4EE"
   },
   {
+    "rank": 15,
     "songTitle": "Just The Way You Are Bruno Mars",
+    "title": "Just The Way You Are",
+    "artist": "Bruno Mars",
     "lyricVideo": "https://youtube.com/watch?v=u7XjPmN-tHw",
     "karaoke": "https://youtube.com/watch?v=DIC1AzEgnnw"
   },
   {
-    "songTitle": "Tonight (I'm Lovin' You) Enrique Iglesias  Ludacris  DJ Frank E",
+    "rank": 16,
+    "songTitle": "Tonight (I'm Lovin' You) Enrique Iglesias Ludacris DJ Frank E",
+    "title": "Tonight (I'm Lovin' You)",
+    "artist": "Enrique Iglesias Featuring Ludacris & DJ Frank E",
     "lyricVideo": "https://youtube.com/watch?v=WBALe-cBWGo",
-    "karaoke": "https://youtube.com/watch?v=FuVWi76sMMw"
+    "karaoke": "https://youtube.com/watch?v=2k6YtDtrqJo"
   },
   {
+    "rank": 17,
     "songTitle": "Raise Your Glass P!nk",
+    "title": "Raise Your Glass",
+    "artist": "P!nk",
     "lyricVideo": "https://youtube.com/watch?v=yvvamodXZbw",
-    "karaoke": "https://youtube.com/watch?v=Noenqxgd7T0"
+    "karaoke": "https://youtube.com/watch?v=svy1qVfC3gw"
   },
   {
+    "rank": 18,
     "songTitle": "Born This Way Lady Gaga",
+    "title": "Born This Way",
+    "artist": "Lady Gaga",
     "lyricVideo": "https://youtube.com/watch?v=4S_vclBlGZo",
-    "karaoke": "https://youtube.com/watch?v=NatvhO5ihAk"
+    "karaoke": "https://youtube.com/watch?v=BOtmpIKbT3I"
   },
   {
+    "rank": 19,
     "songTitle": "F**kin' Perfect P!nk",
+    "title": "F**kin' Perfect",
+    "artist": "P!nk",
     "lyricVideo": "https://youtube.com/watch?v=UL9HEiH6hPM",
-    "karaoke": "https://youtube.com/watch?v=f3vmxzaH6yI"
+    "karaoke": "https://youtube.com/watch?v=Vplnm5MRmZo"
   },
   {
-    "songTitle": "What's My Name? Rihanna  Drake",
-    "lyricVideo": "https://youtube.com/watch?v=D-9EBTc0uk0",
-    "karaoke": "https://youtube.com/watch?v=OaNREHFxzTA"
+    "rank": 20,
+    "songTitle": "What's My Name? Rihanna Drake",
+    "title": "What's My Name?",
+    "artist": "Rihanna Featuring Drake",
+    "lyricVideo": "https://youtube.com/watch?v=zuLVjvXcnIk",
+    "karaoke": "https://youtube.com/watch?v=bcSHsYLLeJg"
   },
   {
-    "songTitle": "Look At Me Now Chris Brown  Lil Wayne  Busta Rhymes",
-    "lyricVideo": "https://youtube.com/watch?v=8gyLR4NfMiI",
-    "karaoke": "https://youtube.com/watch?v=-fBWHxzG_gw"
+    "rank": 21,
+    "songTitle": "Look At Me Now Chris Brown Lil Wayne Busta Rhymes",
+    "title": "Look At Me Now",
+    "artist": "Chris Brown Featuring Lil Wayne & Busta Rhymes",
+    "lyricVideo": "https://youtube.com/watch?v=pggMMljKtp0",
+    "karaoke": "https://youtube.com/watch?v=MUkzp2j8NnI"
   },
   {
-    "songTitle": "Down On Me Jeremih  50 Cent",
+    "rank": 22,
+    "songTitle": "Down On Me Jeremih 50 Cent",
+    "title": "Down On Me",
+    "artist": "Jeremih Featuring 50 Cent",
     "lyricVideo": "https://youtube.com/watch?v=9gr4JMu1MQI",
-    "karaoke": "https://youtube.com/watch?v=m225J4nUGP4"
+    "karaoke": "https://youtube.com/watch?v=qsNkd34XfPU"
   },
   {
+    "rank": 23,
     "songTitle": "How To Love Lil Wayne",
+    "title": "How To Love",
+    "artist": "Lil Wayne",
     "lyricVideo": "https://youtube.com/watch?v=6tYvzpIez7A",
     "karaoke": "https://youtube.com/watch?v=9dcDNQ8u1kk"
   },
   {
+    "rank": 24,
     "songTitle": "Someone Like You Adele",
+    "title": "Someone Like You",
+    "artist": "Adele",
     "lyricVideo": "https://youtube.com/watch?v=z7GCiVTlv04",
     "karaoke": "https://youtube.com/watch?v=rMSQwIp4Jg8"
   },
   {
+    "rank": 25,
     "songTitle": "The Good Life OneRepublic",
+    "title": "The Good Life",
+    "artist": "OneRepublic",
     "lyricVideo": "https://youtube.com/watch?v=-Bo4oWK22bk",
-    "karaoke": "https://youtube.com/watch?v=UzGZzVl_hvI"
+    "karaoke": "https://youtube.com/watch?v=vWVVElkmjhI"
   },
   {
+    "rank": 26,
     "songTitle": "The Lazy Song Bruno Mars",
+    "title": "The Lazy Song",
+    "artist": "Bruno Mars",
     "lyricVideo": "https://youtube.com/watch?v=GYW87vbSxjg",
     "karaoke": "https://youtube.com/watch?v=I45sHC0CygM"
   },
   {
+    "rank": 27,
     "songTitle": "Till The World Ends Britney Spears",
+    "title": "Till The World Ends",
+    "artist": "Britney Spears",
     "lyricVideo": "https://youtube.com/watch?v=n4T3KrE-n_U",
     "karaoke": "https://youtube.com/watch?v=f4huThvJgI4"
   },
   {
+    "rank": 28,
     "songTitle": "The Show Goes On Lupe Fiasco",
+    "title": "The Show Goes On",
+    "artist": "Lupe Fiasco",
     "lyricVideo": "https://youtube.com/watch?v=u59YcUJnNag",
     "karaoke": "https://youtube.com/watch?v=LpSCM-JVf6o"
   },
   {
+    "rank": 29,
     "songTitle": "The Edge Of Glory Lady Gaga",
+    "title": "The Edge Of Glory",
+    "artist": "Lady Gaga",
     "lyricVideo": "https://youtube.com/watch?v=GLA4CwjFrXw",
-    "karaoke": "https://youtube.com/watch?v=lhh-ajANmcI"
+    "karaoke": "https://youtube.com/watch?v=80A5IJEkFxg"
   },
   {
+    "rank": 30,
     "songTitle": "We R Who We R Ke$ha",
-    "lyricVideo": "https://youtube.com/watch?v=EWlBAtMIKXY",
-    "karaoke": "https://youtube.com/watch?v=XAomeDeqN0I"
+    "title": "We R Who We R",
+    "artist": "Ke$ha",
+    "lyricVideo": "https://youtube.com/watch?v=6mwgZey7ElQ",
+    "karaoke": "https://youtube.com/watch?v=-1uFExzQO_E"
   },
   {
+    "rank": 31,
     "songTitle": "Black And Yellow Wiz Khalifa",
+    "title": "Black And Yellow",
+    "artist": "Wiz Khalifa",
     "lyricVideo": "https://youtube.com/watch?v=SZb1uGRAERI",
     "karaoke": "https://youtube.com/watch?v=gTcO_o9ydoc"
   },
   {
+    "rank": 32,
     "songTitle": "Tonight Tonight Hot Chelle Rae",
+    "title": "Tonight Tonight",
+    "artist": "Hot Chelle Rae",
     "lyricVideo": "https://youtube.com/watch?v=qtvbsn6MyA8",
     "karaoke": "https://youtube.com/watch?v=0maqYvt072c"
   },
   {
+    "rank": 33,
     "songTitle": "Blow Ke$ha",
+    "title": "Blow",
+    "artist": "Ke$ha",
     "lyricVideo": "https://youtube.com/watch?v=NJz5tVJRSdo",
     "karaoke": "https://youtube.com/watch?v=e6atCQFxJR4"
   },
   {
-    "songTitle": "Lighters Bad Meets Evil  Bruno Mars",
+    "rank": 34,
+    "songTitle": "Lighters Bad Meets Evil Bruno Mars",
+    "title": "Lighters",
+    "artist": "Bad Meets Evil Featuring Bruno Mars",
     "lyricVideo": "https://youtube.com/watch?v=KCMK1YqV7Ec",
     "karaoke": "https://youtube.com/watch?v=P1W15Xp37VA"
   },
   {
+    "rank": 35,
     "songTitle": "If I Die Young The Band Perry",
+    "title": "If I Die Young",
+    "artist": "The Band Perry",
     "lyricVideo": "https://youtube.com/watch?v=Zh1Clno3T-U",
-    "karaoke": "https://youtube.com/watch?v=O19c8OMCykY"
+    "karaoke": "https://youtube.com/watch?v=2HTKoERJx9Q"
   },
   {
-    "songTitle": "Stereo Hearts Gym Class Heroes  Adam Levine",
-    "lyricVideo": "https://youtube.com/watch?v=Uk8AOATiT48",
-    "karaoke": "https://youtube.com/watch?v=C8lCwQsE2Oc"
+    "rank": 36,
+    "songTitle": "Stereo Hearts Gym Class Heroes Adam Levine",
+    "title": "Stereo Hearts",
+    "artist": "Gym Class Heroes Featuring Adam Levine",
+    "lyricVideo": "https://youtube.com/watch?v=_U0PrwLpb_Q",
+    "karaoke": "https://youtube.com/watch?v=ZeKhgvTn5vM"
   },
   {
+    "rank": 37,
     "songTitle": "The Time (Dirty Bit) The Black Eyed Peas",
+    "title": "The Time (Dirty Bit)",
+    "artist": "The Black Eyed Peas",
     "lyricVideo": "https://youtube.com/watch?v=N-5OJLYn-KQ",
     "karaoke": "https://youtube.com/watch?v=cPmbOtP1Ceg"
   },
   {
-    "songTitle": "Coming Home Diddy - Dirty Money  Skylar Grey",
+    "rank": 38,
+    "songTitle": "Coming Home Diddy - Dirty Money Skylar Grey",
+    "title": "Coming Home",
+    "artist": "Diddy - Dirty Money Featuring Skylar Grey",
     "lyricVideo": "https://youtube.com/watch?v=c3eY6FQOaqM",
     "karaoke": "https://youtube.com/watch?v=V7ojVgvSeBA"
   },
   {
-    "songTitle": "Hey Baby (Drop It To The Floor) Pitbull  T-Pain",
+    "rank": 39,
+    "songTitle": "Hey Baby (Drop It To The Floor) Pitbull T-Pain",
+    "title": "Hey Baby (Drop It To The Floor)",
+    "artist": "Pitbull Featuring T-Pain",
     "lyricVideo": "https://youtube.com/watch?v=ESzeR0ZTdHM",
     "karaoke": "https://youtube.com/watch?v=sXUTKdR28lU"
   },
   {
+    "rank": 40,
     "songTitle": "Only Girl (In The World) Rihanna",
+    "title": "Only Girl (In The World)",
+    "artist": "Rihanna",
     "lyricVideo": "https://youtube.com/watch?v=rcvpf6LXQ2M",
-    "karaoke": "https://youtube.com/watch?v=ZGoB5KmzMhs"
+    "karaoke": "https://youtube.com/watch?v=M1nv2cvhQJk"
   },
   {
-    "songTitle": "6 Foot 7 Foot Lil Wayne  Cory Gunz",
+    "rank": 41,
+    "songTitle": "6 Foot 7 Foot Lil Wayne Cory Gunz",
+    "title": "6 Foot 7 Foot",
+    "artist": "Lil Wayne Featuring Cory Gunz",
     "lyricVideo": "https://youtube.com/watch?v=p2L6WGpZM5A",
     "karaoke": "https://youtube.com/watch?v=DvwwOcM6Q1c"
   },
   {
+    "rank": 42,
     "songTitle": "Just A Kiss Lady Antebellum",
+    "title": "Just A Kiss",
+    "artist": "Lady Antebellum",
     "lyricVideo": "https://youtube.com/watch?v=4ihkz9d3PNw",
-    "karaoke": "https://youtube.com/watch?v=wonXEIuEuIA"
+    "karaoke": "https://youtube.com/watch?v=maeRHdPXZRg"
   },
   {
+    "rank": 43,
     "songTitle": "Dirt Road Anthem Jason Aldean",
+    "title": "Dirt Road Anthem",
+    "artist": "Jason Aldean",
     "lyricVideo": "https://youtube.com/watch?v=iEH39SOL084",
     "karaoke": "https://youtube.com/watch?v=fDehFkLy-yE"
   },
   {
+    "rank": 44,
     "songTitle": "Dynamite Taio Cruz",
+    "title": "Dynamite",
+    "artist": "Taio Cruz",
     "lyricVideo": "https://youtube.com/watch?v=kJNyjdpT1vo",
-    "karaoke": "https://youtube.com/watch?v=348-jO8z__Y"
+    "karaoke": "https://youtube.com/watch?v=fSwyvuBg7qA"
   },
   {
-    "songTitle": "No Hands Waka Flocka Flame  Roscoe Dash  Wale",
+    "rank": 45,
+    "songTitle": "No Hands Waka Flocka Flame Roscoe Dash Wale",
+    "title": "No Hands",
+    "artist": "Waka Flocka Flame Featuring Roscoe Dash & Wale",
     "lyricVideo": "https://youtube.com/watch?v=DeX3Tss3AqE",
-    "karaoke": "https://youtube.com/watch?v=H_bL3OyKBLw"
+    "karaoke": "https://youtube.com/watch?v=rG2hyXIQXL8"
   },
   {
+    "rank": 46,
     "songTitle": "I Wanna Go Britney Spears",
+    "title": "I Wanna Go",
+    "artist": "Britney Spears",
     "lyricVideo": "https://youtube.com/watch?v=n6OeqToac6s",
     "karaoke": "https://youtube.com/watch?v=NW_nyrL1y00"
   },
   {
-    "songTitle": "I'm On One DJ Khaled  Drake, Rick Ross  Lil Wayne",
+    "rank": 47,
+    "songTitle": "I'm On One DJ Khaled Drake, Rick Ross Lil Wayne",
+    "title": "I'm On One",
+    "artist": "DJ Khaled Featuring Drake, Rick Ross & Lil Wayne",
     "lyricVideo": "https://youtube.com/watch?v=vMK1sAA2TAY",
     "karaoke": "https://youtube.com/watch?v=M9zId2qk58I"
   },
   {
-    "songTitle": "You Make Me Feel... Cobra Starship  Sabi",
+    "rank": 48,
+    "songTitle": "You Make Me Feel... Cobra Starship Sabi",
+    "title": "You Make Me Feel...",
+    "artist": "Cobra Starship Featuring Sabi",
     "lyricVideo": "https://youtube.com/watch?v=5NfJbjARpwQ",
     "karaoke": "https://youtube.com/watch?v=VPdmuON690c"
   },
   {
+    "rank": 49,
     "songTitle": "Yeah 3X Chris Brown",
+    "title": "Yeah 3X",
+    "artist": "Chris Brown",
     "lyricVideo": "https://youtube.com/watch?v=TEG0sOtQA3w",
     "karaoke": "https://youtube.com/watch?v=-WqdMDLDAYk"
   },
   {
-    "songTitle": "Moment 4 Life Nicki Minaj  Drake",
+    "rank": 50,
+    "songTitle": "Moment 4 Life Nicki Minaj Drake",
+    "title": "Moment 4 Life",
+    "artist": "Nicki Minaj Featuring Drake",
     "lyricVideo": "https://youtube.com/watch?v=xlt1lBDglGE",
-    "karaoke": "https://youtube.com/watch?v=883nvxsWcY4"
+    "karaoke": "https://youtube.com/watch?v=Y6UFz72V_Xw"
   },
   {
-    "songTitle": "I Need A Doctor Dr. Dre  Eminem  Skylar Grey",
-    "lyricVideo": "https://youtube.com/watch?v=VA770wpLX-Q",
-    "karaoke": "https://youtube.com/watch?v=22xFDlGYqzA"
+    "rank": 51,
+    "songTitle": "I Need A Doctor Dr. Dre Eminem Skylar Grey",
+    "title": "I Need A Doctor",
+    "artist": "Dr. Dre Featuring Eminem & Skylar Grey",
+    "lyricVideo": "https://youtube.com/watch?v=Jkcu829N6qk",
+    "karaoke": "https://youtube.com/watch?v=KlT4SDOpC8I"
   },
   {
+    "rank": 52,
     "songTitle": "Just A Dream Nelly",
+    "title": "Just A Dream",
+    "artist": "Nelly",
     "lyricVideo": "https://youtube.com/watch?v=BFgQk2syvTA",
-    "karaoke": "https://youtube.com/watch?v=XJ4AKd-xMtA"
+    "karaoke": "https://youtube.com/watch?v=hPkx40MW4S8"
   },
   {
-    "songTitle": "Motivation Kelly Rowland  Lil Wayne",
+    "rank": 53,
+    "songTitle": "Motivation Kelly Rowland Lil Wayne",
+    "title": "Motivation",
+    "artist": "Kelly Rowland Featuring Lil Wayne",
     "lyricVideo": "https://youtube.com/watch?v=tf_qU1SiBe0",
     "karaoke": "https://youtube.com/watch?v=vc0DxeUJ24M"
   },
   {
-    "songTitle": "Stereo Love Edward Maya  Vika Jigulina",
+    "rank": 54,
+    "songTitle": "Stereo Love Edward Maya Vika Jigulina",
+    "title": "Stereo Love",
+    "artist": "Edward Maya & Vika Jigulina",
     "lyricVideo": "https://youtube.com/watch?v=y9Kqb2z9Lzs",
     "karaoke": "https://youtube.com/watch?v=Yd_WjXxFI8k"
   },
   {
+    "rank": 55,
     "songTitle": "Jar Of Hearts Christina Perri",
+    "title": "Jar Of Hearts",
+    "artist": "Christina Perri",
     "lyricVideo": "https://youtube.com/watch?v=5mvfc3nWRj0",
-    "karaoke": "https://youtube.com/watch?v=1JCVr44e5xs"
+    "karaoke": "https://youtube.com/watch?v=yCP90-vvDNE"
   },
   {
+    "rank": 56,
     "songTitle": "Roll Up Wiz Khalifa",
+    "title": "Roll Up",
+    "artist": "Wiz Khalifa",
     "lyricVideo": "https://youtube.com/watch?v=r4YF3zj09D8",
     "karaoke": "https://youtube.com/watch?v=9FganGe1BJE"
   },
   {
+    "rank": 57,
     "songTitle": "Sexy And I Know It LMFAO",
+    "title": "Sexy And I Know It",
+    "artist": "LMFAO",
     "lyricVideo": "https://youtube.com/watch?v=mau7IuKhn1k",
     "karaoke": "https://youtube.com/watch?v=0GHLMCnxOac"
   },
   {
-    "songTitle": "Rocketeer Far*East Movement  Ryan Tedder",
+    "rank": 58,
+    "songTitle": "Rocketeer Far*East Movement Ryan Tedder",
+    "title": "Rocketeer",
+    "artist": "Far*East Movement Featuring Ryan Tedder",
     "lyricVideo": "https://youtube.com/watch?v=JNP888jVkJg",
     "karaoke": "https://youtube.com/watch?v=lH3QMkDmiBg"
   },
   {
+    "rank": 59,
     "songTitle": "All Of The Lights Kanye West",
-    "lyricVideo": "https://youtube.com/watch?v=E7SLvLtdoxg",
+    "title": "All Of The Lights",
+    "artist": "Kanye West",
+    "lyricVideo": "https://youtube.com/watch?v=ZlJMv5NsiIM",
     "karaoke": "https://youtube.com/watch?v=vfR2hGq-5EI"
   },
   {
+    "rank": 60,
     "songTitle": "Hold It Against Me Britney Spears",
+    "title": "Hold It Against Me",
+    "artist": "Britney Spears",
     "lyricVideo": "https://youtube.com/watch?v=e2NAidJ-VJA",
     "karaoke": "https://youtube.com/watch?v=stVzpd5zjPI"
   },
   {
+    "rank": 61,
     "songTitle": "More Usher",
+    "title": "More",
+    "artist": "Usher",
     "lyricVideo": "https://youtube.com/watch?v=ry-LNqQK2r0",
     "karaoke": "https://youtube.com/watch?v=FwrPfyd662U"
   },
   {
+    "rank": 62,
     "songTitle": "What The Hell Avril Lavigne",
+    "title": "What The Hell",
+    "artist": "Avril Lavigne",
     "lyricVideo": "https://youtube.com/watch?v=IotEMIyO-L4",
     "karaoke": "https://youtube.com/watch?v=g38Pvd8ImhI"
   },
   {
-    "songTitle": "Written In The Stars Tinie Tempah  Eric Turner",
+    "rank": 63,
+    "songTitle": "Written In The Stars Tinie Tempah Eric Turner",
+    "title": "Written In The Stars",
+    "artist": "Tinie Tempah Featuring Eric Turner",
     "lyricVideo": "https://youtube.com/watch?v=mS9ci05tGdg",
-    "karaoke": "https://youtube.com/watch?v=gOpnWHhIYRI"
+    "karaoke": "https://youtube.com/watch?v=Q8eMfwfQODc"
   },
   {
-    "songTitle": "Bottoms Up Trey Songz  Nicki Minaj",
+    "rank": 64,
+    "songTitle": "Bottoms Up Trey Songz Nicki Minaj",
+    "title": "Bottoms Up",
+    "artist": "Trey Songz Featuring Nicki Minaj",
     "lyricVideo": "https://youtube.com/watch?v=6vtHx29Kfrg",
-    "karaoke": "https://youtube.com/watch?v=xLU-VbKNUC0"
+    "karaoke": "https://youtube.com/watch?v=FsC2DW2Jv44"
   },
   {
-    "songTitle": "DJ Got Us Fallin' In Love Usher  Pitbull",
+    "rank": 65,
+    "songTitle": "DJ Got Us Fallin' In Love Usher Pitbull",
+    "title": "DJ Got Us Fallin' In Love",
+    "artist": "Usher Featuring Pitbull",
     "lyricVideo": "https://youtube.com/watch?v=xG4sH7jKvXE",
     "karaoke": "https://youtube.com/watch?v=Z0_s6IozCUA"
   },
   {
+    "rank": 66,
     "songTitle": "For The First Time The Script",
+    "title": "For The First Time",
+    "artist": "The Script",
     "lyricVideo": "https://youtube.com/watch?v=ddIr0VngnaU",
     "karaoke": "https://youtube.com/watch?v=sEjTdzittxk"
   },
   {
+    "rank": 67,
     "songTitle": "Honey Bee Blake Shelton",
+    "title": "Honey Bee",
+    "artist": "Blake Shelton",
     "lyricVideo": "https://youtube.com/watch?v=VxBv-JlQ9jM",
     "karaoke": "https://youtube.com/watch?v=bX5K98_TmMY"
   },
   {
+    "rank": 68,
     "songTitle": "Don't You Wanna Stay Jason Aldean With Kelly Clarkson",
+    "title": "Don't You Wanna Stay",
+    "artist": "Jason Aldean With Kelly Clarkson",
     "lyricVideo": "https://youtube.com/watch?v=gy7OW3mBOzU",
-    "karaoke": "https://youtube.com/watch?v=gy7OW3mBOzU"
+    "karaoke": "https://youtube.com/watch?v=_ueribEQDmc"
   },
   {
-    "songTitle": "We Found Love Rihanna  Calvin Harris",
+    "rank": 69,
+    "songTitle": "We Found Love Rihanna Calvin Harris",
+    "title": "We Found Love",
+    "artist": "Rihanna Featuring Calvin Harris",
     "lyricVideo": "https://youtube.com/watch?v=QrJosGJj7w0",
-    "karaoke": "https://youtube.com/watch?v=XclNcFENpvA"
+    "karaoke": "https://youtube.com/watch?v=ZH32acDB9Rk"
   },
   {
+    "rank": 70,
     "songTitle": "Pretty Girl Rock Keri Hilson",
+    "title": "Pretty Girl Rock",
+    "artist": "Keri Hilson",
     "lyricVideo": "https://youtube.com/watch?v=K0m1j2_usQo",
     "karaoke": "https://youtube.com/watch?v=k9GJLIf-vgY"
   },
   {
+    "rank": 71,
     "songTitle": "You And I Lady Gaga",
+    "title": "You And I",
+    "artist": "Lady Gaga",
     "lyricVideo": "https://youtube.com/watch?v=wYxW3bJGj0k",
-    "karaoke": "https://youtube.com/watch?v=X-oMv-qyhgo"
+    "karaoke": "https://youtube.com/watch?v=FZkU5-CnbPc"
   },
   {
-    "songTitle": "Like A G6 Far*East Movement  Cataracs  Dev",
+    "rank": 72,
+    "songTitle": "Like A G6 Far*East Movement Cataracs Dev",
+    "title": "Like A G6",
+    "artist": "Far*East Movement Featuring Cataracs & Dev",
     "lyricVideo": "https://youtube.com/watch?v=Uk3cPzk5Qwk",
     "karaoke": "https://youtube.com/watch?v=GIaE8mzupr8"
   },
   {
-    "songTitle": "Without You David Guetta  Usher",
+    "rank": 73,
+    "songTitle": "Without You David Guetta Usher",
+    "title": "Without You",
+    "artist": "David Guetta Featuring Usher",
     "lyricVideo": "https://youtube.com/watch?v=doWIkO1GGVo",
-    "karaoke": "https://youtube.com/watch?v=b5MY6rVwqeo"
+    "karaoke": "https://youtube.com/watch?v=UdjvCxmrLRs"
   },
   {
+    "rank": 74,
     "songTitle": "Back To December Taylor Swift",
+    "title": "Back To December",
+    "artist": "Taylor Swift",
     "lyricVideo": "https://youtube.com/watch?v=qc2Z-OX9wnc",
-    "karaoke": "https://youtube.com/watch?v=VHpK1i6XnkY"
+    "karaoke": "https://youtube.com/watch?v=AJbcV6GUPro"
   },
   {
+    "rank": 75,
     "songTitle": "Teenage Dream Katy Perry",
+    "title": "Teenage Dream",
+    "artist": "Katy Perry",
     "lyricVideo": "https://youtube.com/watch?v=Xpt9LkZo6ag",
-    "karaoke": "https://youtube.com/watch?v=kUyhDgryS3g"
+    "karaoke": "https://youtube.com/watch?v=fOtGD07qQns"
   },
   {
+    "rank": 76,
     "songTitle": "Crazy Girl Eli Young Band",
+    "title": "Crazy Girl",
+    "artist": "Eli Young Band",
     "lyricVideo": "https://youtube.com/watch?v=HoOgtCcpSLA",
     "karaoke": "https://youtube.com/watch?v=TaLmvD5TroY"
   },
   {
+    "rank": 77,
     "songTitle": "Cheers (Drink To That) Rihanna",
+    "title": "Cheers (Drink To That)",
+    "artist": "Rihanna",
     "lyricVideo": "https://youtube.com/watch?v=KCWYisNu5QI",
-    "karaoke": "https://youtube.com/watch?v=j_NVOxDGNmo"
+    "karaoke": "https://youtube.com/watch?v=z1Q84aU70lE"
   },
   {
-    "songTitle": "Who Says Selena Gomez  The Scene",
+    "rank": 78,
+    "songTitle": "Who Says Selena Gomez The Scene",
+    "title": "Who Says",
+    "artist": "Selena Gomez & The Scene",
     "lyricVideo": "https://youtube.com/watch?v=x8_61txDmsY",
-    "karaoke": "https://youtube.com/watch?v=WfCz7hV-bJk"
+    "karaoke": "https://youtube.com/watch?v=E2qz5VCjweE"
   },
   {
+    "rank": 79,
     "songTitle": "Barefoot Blue Jean Night Jake Owen",
+    "title": "Barefoot Blue Jean Night",
+    "artist": "Jake Owen",
     "lyricVideo": "https://youtube.com/watch?v=IkW2V9kbeLs",
     "karaoke": "https://youtube.com/watch?v=oNLKzOBWthA"
   },
   {
-    "songTitle": "Knee Deep Zac Brown Band  Jimmy Buffett",
+    "rank": 80,
+    "songTitle": "Knee Deep Zac Brown Band Jimmy Buffett",
+    "title": "Knee Deep",
+    "artist": "Zac Brown Band Featuring Jimmy Buffett",
     "lyricVideo": "https://youtube.com/watch?v=Gbxf0WWSROk",
     "karaoke": "https://youtube.com/watch?v=mZb65JgPuwM"
   },
   {
+    "rank": 81,
     "songTitle": "Country Girl (Shake It For Me) Luke Bryan",
+    "title": "Country Girl (Shake It For Me)",
+    "artist": "Luke Bryan",
     "lyricVideo": "https://youtube.com/watch?v=_MwyAMYHggY",
-    "karaoke": "https://youtube.com/watch?v=kKgXKSri_J0"
+    "karaoke": "https://youtube.com/watch?v=-hZeZbs8GGU"
   },
   {
+    "rank": 82,
     "songTitle": "Remind Me Brad Paisley Duet With Carrie Underwood",
+    "title": "Remind Me",
+    "artist": "Brad Paisley Duet With Carrie Underwood",
     "lyricVideo": "https://youtube.com/watch?v=NBjG9UFFG3s",
     "karaoke": "https://youtube.com/watch?v=Y_K9gZxDq1w"
   },
   {
+    "rank": 83,
     "songTitle": "In The Dark Dev",
+    "title": "In The Dark",
+    "artist": "Dev",
     "lyricVideo": "https://youtube.com/watch?v=z_7gSSgK2kc",
     "karaoke": "https://youtube.com/watch?v=d39C49_uxLA"
   },
   {
-    "songTitle": "Backseat New Boyz  The Cataracs  Dev",
+    "rank": 84,
+    "songTitle": "Backseat New Boyz The Cataracs Dev",
+    "title": "Backseat",
+    "artist": "New Boyz Featuring The Cataracs & Dev",
     "lyricVideo": "https://youtube.com/watch?v=gKu0CogurDQ",
     "karaoke": "https://youtube.com/watch?v=62NMEWtFXiM"
   },
   {
+    "rank": 85,
     "songTitle": "Headlines Drake",
-    "lyricVideo": "https://youtube.com/watch?v=L2peUQKTrX4",
+    "title": "Headlines",
+    "artist": "Drake",
+    "lyricVideo": "https://youtube.com/watch?v=IsY7UnGRiNw",
     "karaoke": "https://youtube.com/watch?v=EzLGK0IbpZM"
   },
   {
+    "rank": 86,
     "songTitle": "Best Thing I Never Had Beyonce",
+    "title": "Best Thing I Never Had",
+    "artist": "Beyonce",
     "lyricVideo": "https://youtube.com/watch?v=KZek9a7sEiA",
     "karaoke": "https://youtube.com/watch?v=QOzBJI1QA1s"
   },
   {
+    "rank": 87,
     "songTitle": "Don't Wanna Go Home Jason Derulo",
-    "lyricVideo": "https://youtube.com/watch?v=2CGF_Z3yZAo",
+    "title": "Don't Wanna Go Home",
+    "artist": "Jason Derulo",
+    "lyricVideo": "https://youtube.com/watch?v=LsHbc48XWR8",
     "karaoke": "https://youtube.com/watch?v=zwI8r9ipeI8"
   },
   {
-    "songTitle": "Where Them Girls At David Guetta  Flo Rida  Nicki Minaj",
+    "rank": 88,
+    "songTitle": "Where Them Girls At David Guetta Flo Rida Nicki Minaj",
+    "title": "Where Them Girls At",
+    "artist": "David Guetta Featuring Flo Rida & Nicki Minaj",
     "lyricVideo": "https://youtube.com/watch?v=pESsKRCg6pQ",
     "karaoke": "https://youtube.com/watch?v=Bwm2UdHe3Wk"
   },
   {
+    "rank": 89,
     "songTitle": "She Ain't You Chris Brown",
+    "title": "She Ain't You",
+    "artist": "Chris Brown",
     "lyricVideo": "https://youtube.com/watch?v=9tJpYUj2Swg",
     "karaoke": "https://youtube.com/watch?v=ezSw3oHENvE"
   },
   {
+    "rank": 90,
     "songTitle": "Take A Back Road Rodney Atkins",
+    "title": "Take A Back Road",
+    "artist": "Rodney Atkins",
     "lyricVideo": "https://youtube.com/watch?v=G9uje9TzX3o",
     "karaoke": "https://youtube.com/watch?v=MwubVOvf8sI"
   },
   {
+    "rank": 91,
     "songTitle": "Please Don't Go Mike Posner",
+    "title": "Please Don't Go",
+    "artist": "Mike Posner",
     "lyricVideo": "https://youtube.com/watch?v=DasbEoug8Ik",
-    "karaoke": "https://youtube.com/watch?v=XAp5mbiWfpE"
+    "karaoke": "https://youtube.com/watch?v=yI6bkgFBtjc"
   },
   {
+    "rank": 92,
     "songTitle": "Sure Thing Miguel",
+    "title": "Sure Thing",
+    "artist": "Miguel",
     "lyricVideo": "https://youtube.com/watch?v=uGkb-la_Ye0",
-    "karaoke": "https://youtube.com/watch?v=Iilqpt9eC4k"
+    "karaoke": "https://youtube.com/watch?v=qG2HVa4rLEk"
   },
   {
-    "songTitle": "Price Tag Jessie J  B.o.B",
+    "rank": 93,
+    "songTitle": "Price Tag Jessie J B.o.B",
+    "title": "Price Tag",
+    "artist": "Jessie J Featuring B.o.B",
     "lyricVideo": "https://youtube.com/watch?v=lFRc0yfKo3M",
-    "karaoke": "https://youtube.com/watch?v=hyB4iyq2tmw"
+    "karaoke": "https://youtube.com/watch?v=MnJUw5mfex0"
   },
   {
+    "rank": 94,
     "songTitle": "God Gave Me You Blake Shelton",
-    "lyricVideo": "https://youtube.com/watch?v=iTlFsH8Mdqs",
+    "title": "God Gave Me You",
+    "artist": "Blake Shelton",
+    "lyricVideo": "https://youtube.com/watch?v=uGXHWqlH_dc",
     "karaoke": "https://youtube.com/watch?v=M3V-uTAWxgY"
   },
   {
-    "songTitle": "She Will Lil Wayne  Drake",
+    "rank": 95,
+    "songTitle": "She Will Lil Wayne Drake",
+    "title": "She Will",
+    "artist": "Lil Wayne Featuring Drake",
     "lyricVideo": "https://youtube.com/watch?v=QMPQa7_lXOE",
     "karaoke": "https://youtube.com/watch?v=QmG_xBVb1Ts"
   },
   {
+    "rank": 96,
     "songTitle": "Are You Gonna Kiss Me Or Not Thompson Square",
-    "lyricVideo": "https://youtube.com/watch?v=2qkHZMS5lW8",
+    "title": "Are You Gonna Kiss Me Or Not",
+    "artist": "Thompson Square",
+    "lyricVideo": "https://youtube.com/watch?v=0Q4jNMLISQ4",
     "karaoke": "https://youtube.com/watch?v=zJ6ILgG7HDI"
   },
   {
+    "rank": 97,
     "songTitle": "Animal Neon Trees",
+    "title": "Animal",
+    "artist": "Neon Trees",
     "lyricVideo": "https://youtube.com/watch?v=obZdyW5uL-k",
-    "karaoke": "https://youtube.com/watch?v=TuJiMlvWXiA"
+    "karaoke": "https://youtube.com/watch?v=PQvOYzbE_j0"
   },
   {
-    "songTitle": "You And Tequila Kenny Chesney  Grace Potter",
+    "rank": 98,
+    "songTitle": "You And Tequila Kenny Chesney Grace Potter",
+    "title": "You And Tequila",
+    "artist": "Kenny Chesney Featuring Grace Potter",
     "lyricVideo": "https://youtube.com/watch?v=ap-Xvb7KRrc",
-    "karaoke": "https://youtube.com/watch?v=0TLJZjajg_c"
+    "karaoke": "https://youtube.com/watch?v=e2bkeUwQoj8"
   },
   {
+    "rank": 99,
     "songTitle": "Colder Weather Zac Brown Band",
+    "title": "Colder Weather",
+    "artist": "Zac Brown Band",
     "lyricVideo": "https://youtube.com/watch?v=9RWnkuCqmNg",
     "karaoke": "https://youtube.com/watch?v=Drll9B_hVjM"
   },
   {
-    "songTitle": "My Last Big Sean  Chris Brown",
+    "rank": 100,
+    "songTitle": "My Last Big Sean Chris Brown",
+    "title": "My Last",
+    "artist": "Big Sean Featuring Chris Brown",
     "lyricVideo": "https://youtube.com/watch?v=ALFImGKHsDo",
     "karaoke": "https://youtube.com/watch?v=o0B-IaU51Lg"
   }
