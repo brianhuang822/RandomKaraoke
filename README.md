@@ -14,9 +14,19 @@ python main.py --check   # report broken or mismatched links without changing an
 python main.py --years 2026
 ```
 
-The script only picks videos that YouTube allows to be embedded on other sites (many karaoke channels block this) and whose title matches the song and artist. Links that still work are kept, so re-running it is cheap. Billboard publishes each year-end chart near the end of the year; once it is out, run the script to add that year, and the site picks it up from `years.json` automatically.
+The script only picks videos that YouTube allows to be embedded on other sites (many karaoke channels block this) and whose title matches the song and artist. Among those it prefers the artist's own official lyric video, karaoke backing tracks over videos of people singing, full versions over one-part duet or multi-key versions, widely watched uploads, and videos of the song's usual length. `python main.py --repick` re-searches every song and switches only where a clearly better video turns up; it is slow (about 40 minutes), so the monthly run doesn't use it. A normal run keeps links that still work, so it takes only a few minutes. Billboard publishes each year-end chart near the end of the year; once it is out, run the script to add that year, and the site picks it up from `years.json` automatically.
 
 If YouTube or Billboard can't be reached, or a year would lose more than a few working links, the script stops without writing that year and exits with an error, so a bad run never damages the data.
+
+Before committing new data, review what changed and check every link:
+
+```bash
+python -m unittest discover tests   # offline rules and safety tests
+python tools/compare_links.py       # old vs new title of every changed link
+python tools/audit_links.py         # every link must still play when embedded
+```
+
+`CLAUDE.md` explains how videos are chosen and the pitfalls found along the way.
 
 ### Automatic monthly refresh
 
