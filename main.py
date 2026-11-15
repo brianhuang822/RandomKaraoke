@@ -20,7 +20,7 @@ import sys
 import threading
 import time
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 import billboard
 import requests
@@ -31,6 +31,7 @@ FIRST_YEAR = 2006
 WATCH = "https://youtube.com/watch?v="
 SEARCH_RESULTS = 10
 GOOD = 8  # title + artist + keyword match: stop searching once a pick scores this
+MARGIN = 2  # a working link is only swapped for one that scores at least this much higher
 MIN_CHART_SIZE = 90  # fewer parsed songs means Billboard changed its page, not its chart
 MAX_LOST_LINKS = 5   # refuse to write a year that would lose more working links than this
 
@@ -42,16 +43,24 @@ MISSING_FROM_BILLBOARD = {
     2016: {87: ("All The Way Up", "Fat Joe & Remy Ma Featuring French Montana & Infared")},
 }
 
+# A bare "karaoke" in a title is as often someone singing ("Vinny Karaoke 'I'm a Flirt'")
+# as a backing track. Full credit needs track-style wording ("(Karaoke Version)",
+# "- Karaoke", "[Karaoke]", "... karaoke" at the end) or a karaoke/instrumental channel.
+TRACK_KARAOKE = re.compile(r"(?:[(\[|:\-\u2013\u3010]|\bhd)\s*karaoke|karaoke\s*(?:version|instrumental|track|video|"
+                           r"with\b|w/|con\b|lyrics|songs?\b|hd\b|\d|\+|[)\]|:/\-\u2013\u3010\u3011\u266a\u266c]|$)")
+KARAOKE_CHANNEL = re.compile(r"kara|videoke|\bsing\b|sing2|instrumental|backing|minus ?one")
+
 KINDS = {
     "lyricVideo": {
         "suffixes": ["lyric video", "lyrics"],
         "want": [(r"\blyric|\bletra", 4)],
-        "avoid": r"\b(karaoke|instrumental|backing track)\b",
+        # "Morgan Wallen Style - ...", "(lyrics in description)": not a lyric video of this song
+        "avoid": r"\b(karaoke|instrumental|backing track|style|in (?:the )?description)\b",
         "keyword_required": False,  # an official music video beats nothing for guessing
     },
     "karaoke": {
         "suffixes": ["karaoke", "karaoke version", "instrumental"],
-        "want": [(r"\bkaraoke", 4), (r"\b(instrumental|backing track|sing ?along)\b", 2)],
+        "want": [(r"\b(karaoke|videoke)\b", 4), (r"\b(instrumental|backing track|sing ?along|minus one)\b", 2)],
         "avoid": None,
         "keyword_required": True,  # a lyric video is not a karaoke track; the site falls back itself
     },
@@ -60,9 +69,13 @@ KINDS = {
 # title that is not the song's own title or artist (think "Live Your Life").
 JUNK = re.compile(r"\b(cover|covers|reaction|live|remix|sped up|slowed|reverb|nightcore|8d|1 hour|loop|"
                   r"tutorial|lesson|chords|mashup|parody|choreography|shorts|teaser|snippet|bass boosted|"
-                  r"(?:pt|part) (?:2|3|ii|iii|two)|performs?|performing|performance|sings|singing|does)\b")
+                  r"(?:pt|part) (?:2|3|ii|iii|two)|performs?|performing|performance|sings|singing)\b")
+# Karaoke where you sing only one part of a duet: usable, but a full version is better.
+ONE_PART = re.compile(r"\b(you sing|sing as|you as|part only|male part|female part|duet with you|without (?:male|female))\b")
+# Several keys stitched into one video ("Lower Higher Female & Original Key"): awkward to sing along to.
+MULTI_KEY = re.compile(r"\b(lower higher|higher lower|all keys|every key|\d+ keys)\b")
 MINOR = re.compile(r"\b(part only|male part|female part|male key|female key|lower key|higher key|key of|"
-                   r"acoustic|piano|guitar)\b")
+                   r"acoustic|piano|guitar|taylors version)\b")  # Taylor's Version: a later re-recording
 STOP = {"the", "a", "an", "and", "of", "ft", "feat", "featuring", "with", "x", "vs"}
 
 class Unavailable(RuntimeError):
@@ -78,6 +91,11 @@ def norm(text):
     text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().lower()
     text = text.replace("&", " and ").replace("$", "s").replace("'", "")
     return " ".join(re.sub(r"[^a-z0-9]+", " ", text).split())
+
+
+def fold(text):
+    """Lowercase and drop accents, keeping punctuation ("Karaoké♬ -" -> "karaoke♬ -")."""
+    return "".join(c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c)).lower()
 
 
 def tokens(text):
@@ -126,6 +144,11 @@ class Fit:
     artist: bool
     keyword: int
     clean: bool
+    popularity: float = 0  # part of score from view count / verified channel (search results only)
+
+    @property
+    def base(self):
+        return self.score - self.popularity
 
     def usable(self, kind):
         """Right kind of video; good enough to keep when nothing better can be found."""
@@ -164,6 +187,9 @@ def score(video, song, kind):
 
     spec = KINDS[kind]
     keyword = max([w for rx, w in spec["want"] if re.search(rx, rest)], default=0)
+    if kind == "karaoke" and keyword == 4 and not (TRACK_KARAOKE.search(fold(title))
+                                                   or KARAOKE_CHANNEL.search(fold(video.get("channel") or ""))):
+        keyword = 2  # probably someone singing, not a backing track
     avoided = bool(spec["avoid"] and re.search(spec["avoid"], rest))
     junk = bool(JUNK.search(rest))
     s = (4 if artist_ok else 0) + keyword
@@ -173,15 +199,47 @@ def score(video, song, kind):
         s -= 5
     if MINOR.search(rest):
         s -= 1
-    if f" {' '.join(song.core)} " in f" {' '.join(tokens(title))} ":
+    if ONE_PART.search(rest):
+        s -= 3
+    if MULTI_KEY.search(f"{rest} {norm(video.get('channel') or '')}"):
+        s -= 3
+    # The whole title, small words included, should appear as one phrase: "I Ain't Coming
+    # Back" must not match "She Ain't Coming Back".
+    phrase = norm(re.sub(r"\(.*?\)|\[.*?\]", " ", song.title)) or norm(song.title)
+    # A number right after the title is a sequel or numbered remix ("Te Bote 2"), not this
+    # song, unless it starts an artist's name ("No Lie - 2 Chainz"). When Billboard merged
+    # versions into one entry ("SpotemGottem Featuring Pooh Shiesty Or DaBaby"), a numbered
+    # version featuring one of those artists is part of the entry ("Beat Box 3 ft. DaBaby").
+    sequel = re.search(rf" {re.escape(phrase)} ((?:[2-9]|ii|iii|iv)\b(?! (?:members?|hours?|hrs?|mins?|minutes?|keys?)\b).*)",
+                       f" {norm(title)} ")
+    merged = song.artists[1:] if re.search(r"\bOr\b", song.artist) else []
+    if (sequel and not any(norm(a) and sequel.group(1).startswith(norm(a)) for a in song.artists)
+            and not any(credits(a, title_words) for a in merged)):
+        junk, s = True, s - 5
+    if f" {phrase} " in f" {norm(title)} " or compact_title in title_words:
         s += 1
-    if kind == "lyricVideo" and "official" in rest:
+    else:
+        s -= 2
+    channel = video.get("channel") or ""
+    from_artist = any(len(c) >= 3 and c in norm(channel).replace(" ", "")
+                      for c in (norm(a).replace(" ", "") for a in song.artists))
+    if keyword and from_artist:
+        s += 2  # the artist's own lyric video (or official karaoke video) is the best there is
+    elif kind == "lyricVideo" and "official" in rest:
         s += 1
     duration = video.get("duration")
     odd_length = duration is not None and not 60 <= duration <= 600
     if odd_length:
         s -= 4
-    return Fit(s, artist_ok, keyword, not (avoided or junk or odd_length))
+    # Search results (not oEmbed) carry popularity: widely watched uploads are usually
+    # the clean, well-synced ones, and they are taken down less often.
+    views = video.get("view_count")
+    popularity = 0
+    if views is not None:
+        popularity += 2 if views >= 1_000_000 else 1 if views >= 100_000 else -2 if views < 1_000 else 0
+    if video.get("channel_is_verified"):
+        popularity += 1
+    return Fit(s + popularity, artist_ok, keyword, not (avoided or junk or odd_length), popularity)
 
 
 def http():
@@ -229,7 +287,8 @@ def search(query):
         try:
             info = _local.ydl.extract_info(f"ytsearch{SEARCH_RESULTS}:{query}", download=False)
             return [{"id": e["id"], "title": e.get("title") or "", "duration": e.get("duration"),
-                     "channel": e.get("channel") or e.get("uploader") or ""}
+                     "channel": e.get("channel") or e.get("uploader") or "",
+                     "view_count": e.get("view_count"), "channel_is_verified": e.get("channel_is_verified")}
                     for e in info.get("entries") or []
                     if e.get("id") and "/shorts/" not in (e.get("url") or "")]
         except yt_dlp.utils.DownloadError:
@@ -251,16 +310,35 @@ def judge_existing(url, song, kind):
     return score(meta, song, kind), meta
 
 
-def pick(song, kind, old_url, exclude=None):
+def by_score(scored):
+    """Rank (Fit, video) pairs, docking videos whose length is far from the typical one.
+
+    Among uploads that match the song, most share the song's real length; one that
+    is much longer or shorter is usually an extended mix, a clip or a compilation."""
+    lengths = sorted(v["duration"] for _, v in scored.values() if v.get("duration"))
+    typical = lengths[len(lengths) // 2] if len(lengths) >= 3 else None
+    ranked = []
+    for fit, video in scored.values():
+        d = video.get("duration")
+        if typical and d and abs(d - typical) > 0.35 * typical:
+            fit = replace(fit, score=fit.score - 3)
+        ranked.append((fit, video))
+    # The right type of video first (a lyric video over a music video, a karaoke track
+    # over an instrumental), however popular the other one is; then by score.
+    return sorted(ranked, key=lambda v: (-v[0].keyword, -v[0].score))
+
+
+def pick(song, kind, old_url, exclude=None, repick=False):
     """Return (url, Fit, note) for the best embeddable video of this kind.
 
-    A stored link is kept when it is still a good fit. Otherwise YouTube is searched
-    and the best embeddable, acceptable result wins; a stored link that still plays
-    and has the right title is kept when nothing better turns up."""
+    A stored link that is still a good fit is kept without searching, unless repick
+    is set. Otherwise YouTube is searched and the best embeddable, acceptable result
+    replaces the stored link if it scores at least MARGIN higher (so links don't
+    churn on noise); a stored link that still plays is kept when nothing beats it."""
     old_fit, old_meta = judge_existing(old_url, song, kind) if old_url else (None, None)
     old_usable = (old_meta is not None and old_meta["id"] != exclude
                   and old_fit is not None and old_fit.usable(kind))
-    if old_usable and old_fit.good():
+    if old_usable and old_fit.good() and not repick:
         return old_url, old_fit, "kept"
 
     main = song.artists[0] if song.artists else song.artist
@@ -275,17 +353,34 @@ def pick(song, kind, old_url, exclude=None):
                 fit = score(video, song, kind)
                 if fit is not None and fit.acceptable(kind):
                     scored[video["id"]] = (fit, video)
-        for fit, video in sorted(scored.values(), key=lambda v: -v[0].score):
-            if best and fit.score <= best[0].score:
-                break
-            if oembed(video["id"]):
+        best = None
+        for fit, video in by_score(scored):
+            if video["id"] == (old_meta or {}).get("id") or oembed(video["id"]):
                 best = (fit, video)
                 break
         if best and best[0].good():
             break
 
-    if best and not (old_usable and old_fit.acceptable(kind) and old_fit.score >= best[0].score):
+    seen_old = False
+    if old_usable:
+        # Judge the stored link on the same evidence as the new one when the search saw it.
+        for fit, video in by_score(scored):
+            if video["id"] == old_meta["id"]:
+                old_fit, seen_old = fit, True
+                break
+    if best and best[1]["id"] == (old_meta or {}).get("id"):
+        return old_url, old_fit, "kept"
+    if best and not (old_usable and old_fit.acceptable(kind)):
         return WATCH + best[1]["id"], best[0], "new"
+    if best and best[0].keyword != old_fit.keyword:
+        if best[0].keyword > old_fit.keyword:  # a better type of video always wins
+            return WATCH + best[1]["id"], best[0], "new"
+    elif best:
+        # Same type: switch only for a clear gain. Without view data for the stored
+        # link, compare on everything but popularity.
+        new_score = best[0].score if seen_old else best[0].base
+        if new_score >= old_fit.score + MARGIN:
+            return WATCH + best[1]["id"], best[0], "new"
     if old_usable:
         return old_url, old_fit, "kept"
     return None, None, "none"
@@ -323,7 +418,7 @@ def load(year):
         return {norm(e["songTitle"]): e for e in json.load(f)}
 
 
-def resolve(song, old, check_only):
+def resolve(song, old, check_only, repick=False):
     entry = {"rank": song.rank, "songTitle": song.song_title, "title": song.title, "artist": song.artist}
     notes = []
     exclude = None
@@ -337,7 +432,7 @@ def resolve(song, old, check_only):
             entry[kind] = old_url
             notes.append((kind, status, fit))
             continue
-        url, fit, note = pick(song, kind, old_url, exclude)
+        url, fit, note = pick(song, kind, old_url, exclude, repick)
         entry[kind] = url
         exclude = video_id(url)
         if url is None:
@@ -350,7 +445,7 @@ def resolve(song, old, check_only):
     return entry, notes
 
 
-def process_year(year, workers, check_only):
+def process_year(year, workers, check_only, repick=False):
     """Update one year's file. Returns False if the year could not be written safely."""
     songs = fetch_chart(year)
     old = load(year)
@@ -361,7 +456,7 @@ def process_year(year, workers, check_only):
         print(f"{year}: no year-end chart published yet")
         return True
     with cf.ThreadPoolExecutor(workers) as pool:
-        results = list(pool.map(lambda s: resolve(s, old.get(s.key, {}), check_only), songs))
+        results = list(pool.map(lambda s: resolve(s, old.get(s.key, {}), check_only, repick), songs))
     tally = {}
     for song, (entry, notes) in zip(songs, results):
         for kind, status, fit in notes:
@@ -397,13 +492,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--years", type=int, nargs="+", help="only these years (default: every year with a chart)")
     parser.add_argument("--check", action="store_true", help="report problems without changing any file")
+    parser.add_argument("--repick", action="store_true",
+                        help="search again even for links that look fine, and switch to clearly better "
+                             "videos (slow: searches every song)")
     parser.add_argument("--workers", type=int, default=4, help="songs processed in parallel (default 4)")
     args = parser.parse_args()
 
     failed = []
     for year in args.years or range(FIRST_YEAR, datetime.date.today().year + 1):
         try:
-            if not process_year(year, args.workers, args.check):
+            if not process_year(year, args.workers, args.check, args.repick):
                 failed.append(year)
         except Unavailable as e:
             # YouTube or Billboard is down or blocking us: stop, keeping every file as it was.
