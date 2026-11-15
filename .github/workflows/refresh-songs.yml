@@ -1,0 +1,47 @@
+name: Refresh song data
+
+# Monthly: replaces videos that were deleted or blocked from embedding since the
+# last run, and adds a new year once Billboard publishes its year-end chart.
+# main.py refuses to write anything if YouTube or Billboard can't be checked,
+# so a bad run fails (and GitHub emails you) instead of damaging the data.
+on:
+  schedule:
+    - cron: "23 14 2 * *"  # 14:23 UTC on the 2nd of every month
+  workflow_dispatch:       # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-song-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Refresh song lists
+        run: python main.py
+
+      - name: Commit changes
+        run: |
+          git add -- '*.json'
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh song data $(date -u +%Y-%m-%d)"
+          git push
