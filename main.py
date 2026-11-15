@@ -16,6 +16,7 @@ import datetime
 import json
 import os
 import re
+import sys
 import threading
 import time
 import unicodedata
@@ -30,6 +31,8 @@ FIRST_YEAR = 2006
 WATCH = "https://youtube.com/watch?v="
 SEARCH_RESULTS = 10
 GOOD = 8  # title + artist + keyword match: stop searching once a pick scores this
+MIN_CHART_SIZE = 90  # fewer parsed songs means Billboard changed its page, not its chart
+MAX_LOST_LINKS = 5   # refuse to write a year that would lose more working links than this
 
 # Billboard's year-end pages silently omit a few songs. Restore them so a song's
 # position in the file always equals its rank.
@@ -57,10 +60,14 @@ KINDS = {
 # title that is not the song's own title or artist (think "Live Your Life").
 JUNK = re.compile(r"\b(cover|covers|reaction|live|remix|sped up|slowed|reverb|nightcore|8d|1 hour|loop|"
                   r"tutorial|lesson|chords|mashup|parody|choreography|shorts|teaser|snippet|bass boosted|"
-                  r"(?:pt|part) (?:2|3|ii|iii|two))\b")
+                  r"(?:pt|part) (?:2|3|ii|iii|two)|performs?|performing|performance|sings|singing|does)\b")
 MINOR = re.compile(r"\b(part only|male part|female part|male key|female key|lower key|higher key|key of|"
                    r"acoustic|piano|guitar)\b")
 STOP = {"the", "a", "an", "and", "of", "ft", "feat", "featuring", "with", "x", "vs"}
+
+class Unavailable(RuntimeError):
+    """YouTube or Billboard could not be checked. Abort rather than guess."""
+
 
 _local = threading.local()
 _oembed_cache = {}
@@ -187,25 +194,28 @@ def oembed(video_id):
     """Return {"id", "title", "channel"} if the video can be embedded on other sites, else None.
 
     YouTube's oEmbed endpoint answers 401 when the owner disabled embedding,
-    403 for private or removed videos and 404 for deleted ones."""
+    403 for private or removed videos and 404 for deleted ones. Anything else
+    (rate limiting, outages, network errors) raises Unavailable, so a run never
+    mistakes "could not check" for "broken" and throws good links away."""
     with _oembed_lock:
         if video_id in _oembed_cache:
             return _oembed_cache[video_id]
-    result = None
-    for attempt in range(4):
+    for attempt in range(5):
         try:
             r = http().get("https://www.youtube.com/oembed",
                            params={"url": WATCH + video_id, "format": "json"}, timeout=20)
-        except requests.RequestException:
-            time.sleep(2 ** attempt)
-            continue
-        if r.status_code == 429 or r.status_code >= 500:
-            time.sleep(2 ** attempt)
-            continue
-        if r.ok:
-            data = r.json()
-            result = {"id": video_id, "title": data.get("title", ""), "channel": data.get("author_name", "")}
-        break
+            if r.ok:
+                data = r.json()
+                result = {"id": video_id, "title": data.get("title", ""), "channel": data.get("author_name", "")}
+                break
+            if r.status_code in (400, 401, 403, 404):
+                result = None
+                break
+        except (requests.RequestException, ValueError):
+            pass
+        time.sleep(2 ** attempt)
+    else:
+        raise Unavailable(f"YouTube oEmbed is not answering (video {video_id})")
     with _oembed_lock:
         _oembed_cache[video_id] = result
     return result
@@ -224,7 +234,7 @@ def search(query):
                     if e.get("id") and "/shorts/" not in (e.get("url") or "")]
         except yt_dlp.utils.DownloadError:
             time.sleep(2 ** attempt)
-    return []
+    raise Unavailable(f"YouTube search is failing (query {query!r})")
 
 
 def video_id(url):
@@ -292,11 +302,13 @@ def fetch_chart(year):
         except (requests.RequestException, billboard.BillboardParseException):
             time.sleep(2 ** attempt)
     else:
-        raise RuntimeError(f"could not fetch the {year} chart")
+        raise Unavailable(f"could not fetch the {year} chart from Billboard")
     songs = {entry.rank: (entry.title, entry.artist) for entry in chart}
     songs.update(MISSING_FROM_BILLBOARD.get(year, {}))
     if not songs:
         return None
+    if len(songs) < MIN_CHART_SIZE:
+        raise Unavailable(f"only {len(songs)} songs parsed for {year}; Billboard's page format may have changed")
     gaps = sorted(set(range(1, max(songs) + 1)) - set(songs))
     if gaps:
         print(f"  warning: {year} chart is missing ranks {gaps}; add them to MISSING_FROM_BILLBOARD")
@@ -339,11 +351,15 @@ def resolve(song, old, check_only):
 
 
 def process_year(year, workers, check_only):
+    """Update one year's file. Returns False if the year could not be written safely."""
     songs = fetch_chart(year)
-    if songs is None:
-        print(f"{year}: no year-end chart published yet")
-        return False
     old = load(year)
+    if songs is None:
+        if old:
+            print(f"{year}: ERROR Billboard returned no chart, but this year was scraped before")
+            return False
+        print(f"{year}: no year-end chart published yet")
+        return True
     with cf.ThreadPoolExecutor(workers) as pool:
         results = list(pool.map(lambda s: resolve(s, old.get(s.key, {}), check_only), songs))
     tally = {}
@@ -356,6 +372,12 @@ def process_year(year, workers, check_only):
                       f"{song.title} - {song.artist}  {entry[kind] or ''}", flush=True)
     summary = ", ".join(f"{k} {st}: {n}" for (k, st), n in sorted(tally.items()))
     print(f"{year}: {len(songs)} songs. {summary}", flush=True)
+    lost = sum(1 for song, (entry, _) in zip(songs, results)
+               for kind in KINDS if old.get(song.key, {}).get(kind) and not entry[kind])
+    if not check_only and lost > MAX_LOST_LINKS:
+        print(f"{year}: ERROR this run would remove {lost} links; not writing. "
+              f"Check the log, then raise MAX_LOST_LINKS if the removals are real.")
+        return False
     if not check_only:
         with open(os.path.join(ROOT, f"{year}.json"), "w") as f:
             json.dump([entry for entry, _ in results], f, indent=2, ensure_ascii=False)
@@ -378,10 +400,21 @@ def main():
     parser.add_argument("--workers", type=int, default=4, help="songs processed in parallel (default 4)")
     args = parser.parse_args()
 
+    failed = []
     for year in args.years or range(FIRST_YEAR, datetime.date.today().year + 1):
-        process_year(year, args.workers, args.check)
+        try:
+            if not process_year(year, args.workers, args.check):
+                failed.append(year)
+        except Unavailable as e:
+            # YouTube or Billboard is down or blocking us: stop, keeping every file as it was.
+            print(f"{year}: ERROR {e}. Stopping; files for years not yet processed are unchanged.")
+            failed.append(year)
+            break
     if not args.check:
         write_manifest()
+    if failed:
+        print(f"Failed: {failed}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

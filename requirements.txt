@@ -1,3 +1,4 @@
+# Left unpinned on purpose: yt-dlp has to keep up with YouTube changes.
 billboard.py
 requests
 yt-dlp

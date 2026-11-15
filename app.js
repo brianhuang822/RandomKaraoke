@@ -60,53 +60,102 @@ document.addEventListener('DOMContentLoaded', () => {
     return pool;
   }
 
+  const KIND_NAME = { karaoke: 'karaoke version', lyricVideo: 'lyric video' };
+  let currentPick = 0;
+
+  // The IFrame API tells us when a video refuses to play here (region locks, uploads
+  // removed since the data was refreshed) so we can switch to the song's other video.
+  let youTubeApi = null;
+  function loadYouTubeApi() {
+    if (!youTubeApi) {
+      youTubeApi = new Promise((resolve, reject) => {
+        if (window.YT && window.YT.Player) return resolve(window.YT);
+        const previous = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = () => {
+          if (previous) previous();
+          resolve(window.YT);
+        };
+        const script = el('script', { src: 'https://www.youtube.com/iframe_api', async: true });
+        script.onerror = reject;
+        document.head.append(script);
+      });
+    }
+    return youTubeApi;
+  }
+
+  function watchLink(id, text) {
+    return el('a', {
+      className: 'watch-link',
+      href: `https://www.youtube.com/watch?v=${id}`,
+      target: '_blank',
+      rel: 'noopener',
+      textContent: text,
+    });
+  }
+
   function randomSong() {
     const pool = candidateSongs();
     if (!pool.length) {
       showMessage('No songs match these settings. Try a wider year range or a smaller "Skip Top Y".');
       return;
     }
-    const { year, rank, song } = pool[Math.floor(Math.random() * pool.length)];
-    const karaokeMode = videoTypeCheckbox.checked;
-    let url = karaokeMode ? song.karaoke : song.lyricVideo;
-    let note = '';
-    if (!videoId(url)) {
-      url = karaokeMode ? song.lyricVideo : song.karaoke;
-      note = karaokeMode
-        ? 'No embeddable karaoke version was found for this song, so here is the lyric video.'
-        : 'No embeddable lyric video was found for this song, so here is the karaoke version.';
-    }
-    const id = videoId(url);
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    const wanted = videoTypeCheckbox.checked ? 'karaoke' : 'lyricVideo';
+    const other = wanted === 'karaoke' ? 'lyricVideo' : 'karaoke';
+    const videos = [wanted, other]
+      .map((kind) => ({ kind, id: videoId(pick.song[kind]) }))
+      .filter((v, i, all) => v.id && all.findIndex((w) => w.id === v.id) === i);
+    currentPick += 1;
+    showVideo(pick, wanted, videos, 0, currentPick);
+  }
 
+  // Show videos[index]; on a playback error move on to the next one.
+  function showVideo(pick, wanted, videos, index, pickId) {
+    const { year, rank, song } = pick;
+    const title = song.title || song.songTitle;
+    const video = videos[index];
     const children = [
-      el('h2', { textContent: song.title || song.songTitle }),
+      el('h2', { textContent: title }),
       song.artist ? el('p', { className: 'artist', textContent: song.artist }) : '',
       el('h3', { textContent: `Rank ${rank} in ${year}` }),
     ];
-    if (note) children.push(el('p', { className: 'note', textContent: note }));
-    if (id) {
-      children.push(
-        el('div', { className: 'video-wrapper' }, [
-          el('iframe', {
-            src: `https://www.youtube.com/embed/${id}`,
-            title: `${song.title || song.songTitle} (${karaokeMode ? 'karaoke' : 'lyric video'})`,
-            allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
-            allowFullscreen: true,
-            referrerPolicy: 'strict-origin-when-cross-origin', // YouTube rejects embeds without a referrer
-          }),
-        ]),
-        el('a', {
-          className: 'watch-link',
-          href: `https://www.youtube.com/watch?v=${id}`,
-          target: '_blank',
-          rel: 'noopener',
-          textContent: 'Not playing? Watch on YouTube',
-        }),
-      );
-    } else {
-      children.push(el('p', { className: 'note', textContent: 'No video is available for this song yet.' }));
+
+    if (!video) {
+      const text = videos.length
+        ? "This song's videos won't play on this site right now."
+        : 'No video is available for this song yet.';
+      children.push(el('p', { className: 'note', textContent: text }));
+      if (videos.length) children.push(watchLink(videos[0].id, 'Watch on YouTube instead'));
+      songDisplay.replaceChildren(...children.filter(Boolean));
+      return;
     }
+
+    if (video.kind !== wanted) {
+      const reason = index > 0
+        ? `The ${KIND_NAME[wanted]} won't play on this site`
+        : `No embeddable ${KIND_NAME[wanted]} was found for this song`;
+      children.push(el('p', { className: 'note', textContent: `${reason}, so here is the ${KIND_NAME[video.kind]}.` }));
+    }
+    const origin = location.origin && location.origin !== 'null' ? `&origin=${encodeURIComponent(location.origin)}` : '';
+    const iframe = el('iframe', {
+      src: `https://www.youtube.com/embed/${video.id}?enablejsapi=1${origin}`,
+      title: `${title} (${KIND_NAME[video.kind]})`,
+      allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+      allowFullscreen: true,
+      referrerPolicy: 'strict-origin-when-cross-origin', // YouTube rejects embeds without a referrer
+    });
+    children.push(el('div', { className: 'video-wrapper' }, [iframe]), watchLink(video.id, 'Not playing? Watch on YouTube'));
     songDisplay.replaceChildren(...children.filter(Boolean));
+
+    loadYouTubeApi()
+      .then((YT) => new YT.Player(iframe, {
+        events: {
+          onError: () => {
+            if (pickId === currentPick) showVideo(pick, wanted, videos, index + 1, pickId);
+          },
+        },
+      }))
+      .catch(() => {}); // without the API the plain embed still plays
   }
 
   function updateVideoModeLabel() {
